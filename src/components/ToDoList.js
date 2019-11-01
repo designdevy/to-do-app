@@ -39,7 +39,7 @@ export default withStyles(styles)(function ToDoList({
   handleEditChange
 }) {
   return (
-    <Grid item xs={10}>
+    <Grid item xs={12} sm={10}>
       <Paper className={classes.paper}>
         <Typography variant="h4" align="center" gutterBottom>
           Tasks for today
