@@ -4,7 +4,8 @@ import ToDoListContainer from './components/ToDoListContainer'
 const initialGlobalState = {
   toDos: [{title: "Make an app", id: "26872648"}],
   title: "",
-  checked: []
+  checked: [],
+  titleEdited: {title: "", id: ""}
 };
 
 // Create a Context for the (global) State
