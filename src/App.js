@@ -9,7 +9,8 @@ const initialGlobalState = {
   toDos: [{title: "Make an app", id: "26872648"}],
   title: "",
   checked: [],
-  titleEdited: {title: "", id: ""}
+  titleEdited: {title: "", id: ""},
+  menuOpen: true
 };
 
 // Create a Context for the (global) State
