@@ -44,8 +44,27 @@ function handleDelete(id, toDos) {
   window.GlobalState.set({ toDos: newToDos });
 }
 
+const handleEdit = (id, toDos, editedTitle)=> e => {
+  e.preventDefault();
+  const newToDos = toDos.map(toDo => {
+    if (toDo.id === id) {
+      return {title: editedTitle, id}
+    } else {
+      return toDo
+    }
+  }) 
+  window.GlobalState.set({
+      toDos: newToDos,
+      titleEdited: {title: "", id: ""}
+    });
+}
+
+const handleEditChange = (id) => ({ target: { value } }) => {
+  window.GlobalState.set({ titleEdited: {title: value, id} });
+}
+
 export default withStyles(styles)(function ToDoListContainer(props) {
-  const { title, toDos, checked } = useGlobalState();
+  const { title, toDos, checked, titleEdited } = useGlobalState();
   const { classes } = props;
 
   return (
@@ -57,10 +76,13 @@ export default withStyles(styles)(function ToDoListContainer(props) {
           title={title}
           toDos={toDos}
           checked={checked}
+          titleEdited={titleEdited}
           handleChange={handleChange}
           handleCreate={handleCreate}
           handleDelete={handleDelete}
           handleToggle={handleToggle}
+          handleEdit={handleEdit}
+          handleEditChange={handleEditChange}
         />
       </Grid>
     </div>
