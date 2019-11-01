@@ -7,7 +7,7 @@ import {
   Checkbox,
   List,
   ListItem,
-  ListItemText,
+  InputBase,
   ListItemIcon,
   ListItemSecondaryAction,
   IconButton,
@@ -30,10 +30,13 @@ export default withStyles(styles)(function ToDoList({
   title,
   toDos,
   checked,
+  titleEdited,
   handleChange,
   handleCreate,
   handleDelete,
-  handleToggle
+  handleToggle,
+  handleEdit,
+  handleEditChange
 }) {
   return (
     <Grid item xs={10}>
@@ -59,7 +62,19 @@ export default withStyles(styles)(function ToDoList({
               <ListItemIcon>
                 <Checkbox edge="start" tabIndex={-1} disableRipple />
               </ListItemIcon>
-              <ListItemText primary={title} />
+              <form
+                onSubmit={handleEdit(id, toDos, titleEdited.title)}
+                className={classes.form}
+              >
+                <InputBase
+                  name="title"
+                  value={titleEdited.id === id ? titleEdited.title : title}
+                  onChange={handleEditChange(id)}
+                />
+                {titleEdited.id === id ? <Button type="submit" color="primary" variant="outlined">
+                  Edit
+                </Button> : <p/>}
+              </form>
               <ListItemSecondaryAction>
                 <IconButton
                   color="primary"
