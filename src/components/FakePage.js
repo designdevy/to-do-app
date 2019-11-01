@@ -19,7 +19,7 @@ export default withStyles(styles)(function FakePage({ classes }) {
       <TopMenu />
       <Grid container className={classes.root} spacing={2}>
         <LeftMenu />
-        <Grid item xs={10}>
+        <Grid item xs={12} sm={10}>
           <Paper className={classes.paper}>Welkom to the application!</Paper>
         </Grid>
       </Grid>
