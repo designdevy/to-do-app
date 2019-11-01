@@ -3,7 +3,7 @@ import ToDoListContainer from './components/ToDoListContainer'
 
 const initialGlobalState = {
   toDos: [{title: "Make an app", id: "26872648"}],
-  title: "test",
+  title: "",
   checked: []
 };
 
