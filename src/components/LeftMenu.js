@@ -1,14 +1,20 @@
 import React from "react";
 import { Button, Grid } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
+import { Link } from "react-router-dom";
 
 const styles = {
   button: {
-    margin: 10
+    margin: 10,
+    width: "100%"
   },
   menu: {
     display: "flex",
     flexDirection: "column"
+  },
+  link: {
+    textDecoration: "none",
+    color: "white"
   }
 };
 
@@ -17,18 +23,26 @@ export default withStyles(styles)(function LeftMenu(props) {
 
   return (
     <Grid item xs={2} className={classes.menu}>
-      <Button color="primary" variant="contained" className={classes.button}>
-        Page 1
-      </Button>
-      <Button color="primary" variant="contained" className={classes.button}>
-        Page 2
-      </Button>
-      <Button color="primary" variant="contained" className={classes.button}>
-        Page 3
-      </Button>
-      <Button color="primary" variant="contained" className={classes.button}>
-        ToDos
-      </Button>
+      <Link to="/" className={classes.link}>
+        <Button color="primary" variant="contained" className={classes.button}>
+          Page 1
+        </Button>
+      </Link>
+      <Link to="/fake2" className={classes.link}>
+        <Button color="primary" variant="contained" className={classes.button}>
+          Page 2
+        </Button>
+      </Link>
+      <Link to="/fake3" className={classes.link}>
+        <Button color="primary" variant="contained" className={classes.button}>
+          Page 3
+        </Button>
+      </Link>
+      <Link to="/todo" className={classes.link}>
+        <Button color="primary" variant="contained" className={classes.button}>
+          TODO
+        </Button>
+      </Link>
     </Grid>
   );
 });
