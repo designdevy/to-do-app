@@ -25,7 +25,7 @@ export default withStyles(styles)(function Mock2({ classes }) {
             <Typography variant="h4" align="center" gutterBottom>
               That's not the page you are looking for!
             </Typography>
-            <Typography variant="h7" gutterBottom>
+            <Typography variant="subtitle1" gutterBottom>
               Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
               dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
               ac consectetur ac, vestibulum at eros. Praesent commodo cursus

@@ -17,7 +17,7 @@ export default withStyles(styles)(function BottomBar(props) {
       color="primary"
       className={classes.appBar}
     >
-      <Typography variant="h7" align="center">Made by Nataliia Evchenko</Typography>
+      <Typography variant="subtitle1" align="center">Made by Nataliia Evchenko</Typography>
     </AppBar>
   );
 });

@@ -11,7 +11,8 @@ const styles = {
   root: {
     flexGrow: 1,
     padding: 25
-  }
+  },
+  image: { width: "100%", marginBottom: 15 }
 };
 
 export default withStyles(styles)(function Mock({ classes }) {
@@ -22,10 +23,15 @@ export default withStyles(styles)(function Mock({ classes }) {
         <LeftMenu />
         <Grid item xs={12} sm={10}>
           <Paper className={classes.paper}>
+            <img
+              className={classes.image}
+              src="https://cdn.pixabay.com/photo/2017/06/05/10/15/landscape-2373649_960_720.jpg"
+              alt="mountains"
+            />
             <Typography variant="h4" align="center" gutterBottom>
               Welkom to the application!
             </Typography>
-            <Typography variant="h7" gutterBottom>
+            <Typography variant="subtitle1" gutterBottom>
               Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
               dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
               ac consectetur ac, vestibulum at eros. Praesent commodo cursus
