@@ -23,7 +23,7 @@ const styles = {
     alignItems: "baseline",
     justifyContent: "space-evenly"
   },
-  image: { width: "100%" }
+  image: { width: "100%", marginBottom: 15 }
 };
 
 export default withStyles(styles)(function ToDoList({
@@ -77,7 +77,7 @@ export default withStyles(styles)(function ToDoList({
                   />
                 </form>
               ) : (
-                <Typography variant="h7" gutterBottom>
+                <Typography variant="subtitle1" gutterBottom>
                   {title}
                 </Typography>
               )}

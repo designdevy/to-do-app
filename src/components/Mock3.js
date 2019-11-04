@@ -25,7 +25,7 @@ export default withStyles(styles)(function Mock3({ classes }) {
             <Typography variant="h4" align="center" gutterBottom>
               That is also not the page with ToDos!
             </Typography>
-            <Typography variant="h7" gutterBottom>
+            <Typography variant="subtitle1" gutterBottom>
               Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
               dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
               ac consectetur ac, vestibulum at eros. Praesent commodo cursus
