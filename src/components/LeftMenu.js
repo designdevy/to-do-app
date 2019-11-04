@@ -35,7 +35,7 @@ export default withStyles(styles)(function LeftMenu(props) {
             Page 1
           </Button>
         </Link>
-        <Link to="/fake2" className={classes.link}>
+        <Link to="/mock2" className={classes.link}>
           <Button
             color="primary"
             variant="contained"
@@ -44,7 +44,7 @@ export default withStyles(styles)(function LeftMenu(props) {
             Page 2
           </Button>
         </Link>
-        <Link to="/fake3" className={classes.link}>
+        <Link to="/mock3" className={classes.link}>
           <Button
             color="primary"
             variant="contained"

@@ -5,6 +5,7 @@ import LeftMenu from "./LeftMenu";
 import ToDoList from "./ToDoList";
 import { Grid } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
+import BottomBar from "./BottomBar";
 
 const styles = {
   root: {
@@ -63,6 +64,10 @@ const handleEditChange = (id) => ({ target: { value } }) => {
   window.GlobalState.set({ titleEdited: {title: value, id} });
 }
 
+const handleStartEditing = (id, title) => {
+  window.GlobalState.set({titleEdited: {title, id}})
+}
+
 export default withStyles(styles)(function ToDoListContainer(props) {
   const { title, toDos, checked, titleEdited } = useGlobalState();
   const { classes } = props;
@@ -83,8 +88,10 @@ export default withStyles(styles)(function ToDoListContainer(props) {
           handleToggle={handleToggle}
           handleEdit={handleEdit}
           handleEditChange={handleEditChange}
+          handleStartEditing={handleStartEditing}
         />
       </Grid>
+      <BottomBar />
     </div>
   );
 });
