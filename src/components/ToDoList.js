@@ -15,6 +15,7 @@ import {
 import Delete from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import { withStyles } from "@material-ui/core/styles";
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const styles = {
   paper: { margin: "auto", padding: 20, maxWidth: 550 },
@@ -40,6 +41,8 @@ export default withStyles(styles)(function ToDoList({
   handleEditChange,
   handleStartEditing
 }) {
+  const matches = useMediaQuery('(min-width:600px)');
+
   return (
     <Grid item xs={12} sm={10}>
       <Paper className={classes.paper}>

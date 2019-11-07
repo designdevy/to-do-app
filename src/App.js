@@ -10,7 +10,7 @@ const initialGlobalState = {
   title: "",
   checked: [],
   titleEdited: {title: "", id: ""},
-  menuOpen: true
+  menuOpen: false
 };
 
 // Create a Context for the (global) State
