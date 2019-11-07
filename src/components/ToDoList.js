@@ -16,9 +16,19 @@ import Delete from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import { withStyles } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import MenuButton from './MenuButton'
 
 const styles = {
   paper: { margin: "auto", padding: 20, maxWidth: 550 },
+  paperMobile: {
+    width: "100%",
+    minHeight: "80vh",
+    borderTopLeftRadius: 30,
+    backgroundColor: "white"
+  },
+  titleMobile: {
+    color: "white"
+  },
   form: {
     display: "flex",
     alignItems: "baseline",
@@ -118,14 +128,11 @@ export default withStyles(styles)(function ToDoList({
   } else {
     return (
       <Grid item xs={12} sm={10}>
-          <img
-            className={classes.image}
-            src="https://cdn.pixabay.com/photo/2017/06/05/10/15/landscape-2373649_960_720.jpg"
-            alt="mountains"
-          />
-          <Typography variant="h4" align="center" gutterBottom>
-            Tasks for today
-          </Typography>
+        <MenuButton />
+        <Typography variant="h5" align="center" className={classes.titleMobile} gutterBottom>
+          Tasks for today
+        </Typography>
+        <Paper className={classes.paperMobile}>
           <form onSubmit={handleCreate(toDos)} className={classes.form}>
             <TextField
               name="title"
@@ -184,6 +191,7 @@ export default withStyles(styles)(function ToDoList({
               </ListItem>
             ))}
           </List>
+        </Paper>
       </Grid>
     );
   }

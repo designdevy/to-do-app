@@ -12,7 +12,8 @@ const styles = {
   root: {
     flexGrow: 1,
     padding: 25
-  }
+  },
+  mobile: { backgroundColor : "#512da8", padding: 0, hight: "100vh"}
 };
 
 function handleChange({ target: { name, value } }) {
@@ -75,9 +76,9 @@ export default withStyles(styles)(function ToDoListContainer(props) {
   const matches = useMediaQuery("(min-width:600px)");
 
   return (
-    <div>
-      <TopMenu />
-      <Grid container className={matches ? classes.root : classes.mobile} spacing={2}>
+    <div className={matches ? classes.root : classes.mobile}>
+      {matches ? <TopMenu /> : <span/> }
+      <Grid container spacing={2}>
         {(menuOpen || matches) ? < LeftMenu /> : <p/>}
         <ToDoList
           title={title}
@@ -93,7 +94,7 @@ export default withStyles(styles)(function ToDoListContainer(props) {
           handleStartEditing={handleStartEditing}
         />
       </Grid>
-      <BottomBar />
+      {/* <BottomBar /> */}
     </div>
   );
 });

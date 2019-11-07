@@ -20,7 +20,7 @@ const styles = {
 
 export default withStyles(styles)(function LeftMenu(props) {
   const { classes } = props;
-  console.log('I was called')
+
     return (
       <Grid item xs={12} sm={2} className={classes.menu}>
         <Link to="/" className={classes.link}>
