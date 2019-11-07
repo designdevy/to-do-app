@@ -5,6 +5,7 @@ import LeftMenu from "./LeftMenu";
 import ToDoList from "./ToDoList";
 import { Grid } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 import BottomBar from "./BottomBar";
 
 const styles = {
@@ -69,14 +70,15 @@ const handleStartEditing = (id, title) => {
 }
 
 export default withStyles(styles)(function ToDoListContainer(props) {
-  const { title, toDos, checked, titleEdited } = useGlobalState();
+  const { title, toDos, checked, titleEdited, menuOpen } = useGlobalState();
   const { classes } = props;
+  const matches = useMediaQuery("(min-width:600px)");
 
   return (
     <div>
       <TopMenu />
-      <Grid container className={classes.root} spacing={2}>
-        <LeftMenu />
+      <Grid container className={matches ? classes.root : classes.mobile} spacing={2}>
+        {(menuOpen || matches) ? < LeftMenu /> : <p/>}
         <ToDoList
           title={title}
           toDos={toDos}
