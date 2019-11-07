@@ -3,6 +3,7 @@ import { Button, Grid } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import { useGlobalState } from "../App";
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const styles = {
   button: {
@@ -22,8 +23,9 @@ const styles = {
 export default withStyles(styles)(function LeftMenu(props) {
   const { classes } = props;
   const { menuOpen } = useGlobalState();
+  const matches = useMediaQuery('(min-width:600px)');
 
-  if (menuOpen) {
+  if (menuOpen || matches) {
     return (
       <Grid item xs={12} sm={2} className={classes.menu}>
         <Link to="/" className={classes.link}>
@@ -35,7 +37,7 @@ export default withStyles(styles)(function LeftMenu(props) {
             Page 1
           </Button>
         </Link>
-        <Link to="/fake2" className={classes.link}>
+        <Link to="/mock2" className={classes.link}>
           <Button
             color="primary"
             variant="contained"
@@ -44,7 +46,7 @@ export default withStyles(styles)(function LeftMenu(props) {
             Page 2
           </Button>
         </Link>
-        <Link to="/fake3" className={classes.link}>
+        <Link to="/mock3" className={classes.link}>
           <Button
             color="primary"
             variant="contained"

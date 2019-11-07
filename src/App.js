@@ -1,16 +1,16 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import ToDoListContainer from './components/ToDoListContainer'
-import FakePage from './components/FakePage'
-import FakePage2 from './components/FakePage2'
-import FakePage3 from './components/FakePage3'
+import Mock from './components/Mock'
+import Mock2 from './components/Mock2'
+import Mock3 from './components/Mock3'
 
 const initialGlobalState = {
   toDos: [{title: "Make an app", id: "26872648"}],
   title: "",
   checked: [],
   titleEdited: {title: "", id: ""},
-  menuOpen: true
+  menuOpen: false
 };
 
 // Create a Context for the (global) State
@@ -62,9 +62,9 @@ export const useGlobalState = () => React.useContext(GlobalState);
 export default function App() {
   // Note: within the Root function we can return any Component (not just SomeComponent, but also a Router for instance)
   return <Global Root={() => <main>
-    <Route exact path="/" component={FakePage} />
-    <Route exact path="/fake2" component={FakePage2} />
-    <Route exact path="/fake3" component={FakePage3} />
+    <Route exact path="/" component={Mock} />
+    <Route exact path="/mock2" component={Mock2} />
+    <Route exact path="/mock3" component={Mock3} />
     <Route exact path="/todo" component={ToDoListContainer} />
   </main>} />;
 }
