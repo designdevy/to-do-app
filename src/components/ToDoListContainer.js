@@ -7,25 +7,28 @@ import { Grid } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import BottomBar from "./BottomBar";
+import MenuButton from './MenuButton'
 
 const styles = {
   root: {
     flexGrow: 1,
     padding: 25
   },
-  mobile: { backgroundColor : "#512da8", padding: 0, hight: "100vh"}
+  mobile: { backgroundColor: "#2196f3", padding: 0, hight: "100vh" }
 };
 
 function handleChange({ target: { name, value } }) {
   window.GlobalState.set({ [name]: value });
 }
 
-const handleCreate = toDos => e => {
+const handleCreate = (toDos, priority) => e => {
   e.preventDefault();
   if (e.target.title.value) {
     window.GlobalState.set({
-      toDos: [...toDos, { title: e.target.title.value, id: Date.now() }],
-      title: ""
+      toDos: [...toDos, { title: e.target.title.value, id: Date.now(), importance: priority }],
+      title: "",
+      formOpen: false,
+      priority: false
     });
   }
 };
@@ -42,44 +45,53 @@ const handleToggle = (id, checked) => () => {
   window.GlobalState.set({ checked: newChecked });
 };
 
-function handleDelete(id, toDos) {
+function handleDelete(id, toDos, checked) {
   const newToDos = toDos.filter(toDo => toDo.id !== id);
-  window.GlobalState.set({ toDos: newToDos });
+  const newChecked = checked.filter(done => done !== id)
+  window.GlobalState.set({ toDos: newToDos, checked: newChecked });
 }
 
-const handleEdit = (id, toDos, editedTitle)=> e => {
+const handleEdit = (id, toDos, editedTitle) => e => {
   e.preventDefault();
   const newToDos = toDos.map(toDo => {
     if (toDo.id === id) {
-      return {title: editedTitle, id}
+      return { title: editedTitle, id };
     } else {
-      return toDo
+      return toDo;
     }
-  }) 
+  });
   window.GlobalState.set({
-      toDos: newToDos,
-      titleEdited: {title: "", id: ""}
-    });
-}
+    toDos: newToDos,
+    titleEdited: { title: "", id: "" }
+  });
+};
 
-const handleEditChange = (id) => ({ target: { value } }) => {
-  window.GlobalState.set({ titleEdited: {title: value, id} });
-}
+const handleEditChange = id => ({ target: { value } }) => {
+  window.GlobalState.set({ titleEdited: { title: value, id } });
+};
 
 const handleStartEditing = (id, title) => {
-  window.GlobalState.set({titleEdited: {title, id}})
+  window.GlobalState.set({ titleEdited: { title, id } });
+};
+
+const handleOpenForm = (formOpen) => {
+  window.GlobalState.set({ formOpen: !formOpen });
+}
+
+const togglePriority = (priority) => {
+  window.GlobalState.set({priority: !priority})
 }
 
 export default withStyles(styles)(function ToDoListContainer(props) {
-  const { title, toDos, checked, titleEdited, menuOpen } = useGlobalState();
+  const { title, toDos, checked, titleEdited, menuOpen, formOpen, priority } = useGlobalState();
   const { classes } = props;
   const matches = useMediaQuery("(min-width:600px)");
 
   return (
     <div className={matches ? classes.root : classes.mobile}>
-      {matches ? <TopMenu /> : <span/> }
-      <Grid container spacing={2}>
-        {(menuOpen || matches) ? < LeftMenu /> : <p/>}
+      {matches ? <TopMenu /> : <MenuButton />}
+      <Grid container>
+        {menuOpen || matches ? <LeftMenu /> : <p />}
         <ToDoList
           title={title}
           toDos={toDos}
@@ -92,6 +104,10 @@ export default withStyles(styles)(function ToDoListContainer(props) {
           handleEdit={handleEdit}
           handleEditChange={handleEditChange}
           handleStartEditing={handleStartEditing}
+          handleOpenForm={handleOpenForm}
+          formOpen={formOpen}
+          priority={priority}
+          togglePriority={togglePriority}
         />
       </Grid>
       {/* <BottomBar /> */}

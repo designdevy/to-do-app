@@ -6,11 +6,13 @@ import Mock2 from './components/Mock2'
 import Mock3 from './components/Mock3'
 
 const initialGlobalState = {
-  toDos: [{title: "Make an app", id: "26872648"}],
+  toDos: [{title: "Make an app", id: "26872648", importance: true}],
   title: "",
+  priority: false,
   checked: [],
   titleEdited: {title: "", id: ""},
-  menuOpen: false
+  menuOpen: false,
+  formOpen: false
 };
 
 // Create a Context for the (global) State
