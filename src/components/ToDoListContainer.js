@@ -1,13 +1,13 @@
 import React from "react";
 import { useGlobalState } from "../App";
 import TopMenu from "./TopMenu";
-import LeftMenu from "./LeftMenu";
+
 import ToDoList from "./ToDoList";
-import { Grid } from "@material-ui/core";
+
 import { withStyles } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import BottomBar from "./BottomBar";
-import MenuButton from './MenuButton'
+import MenuButton from "./MenuButton";
 
 const styles = {
   root: {
@@ -25,7 +25,10 @@ const handleCreate = (toDos, priority) => e => {
   e.preventDefault();
   if (e.target.title.value) {
     window.GlobalState.set({
-      toDos: [...toDos, { title: e.target.title.value, id: Date.now(), importance: priority }],
+      toDos: [
+        ...toDos,
+        { title: e.target.title.value, id: Date.now(), importance: priority }
+      ],
       title: "",
       formOpen: false,
       priority: false
@@ -47,7 +50,7 @@ const handleToggle = (id, checked) => () => {
 
 function handleDelete(id, toDos, checked) {
   const newToDos = toDos.filter(toDo => toDo.id !== id);
-  const newChecked = checked.filter(done => done !== id)
+  const newChecked = checked.filter(done => done !== id);
   window.GlobalState.set({ toDos: newToDos, checked: newChecked });
 }
 
@@ -74,24 +77,31 @@ const handleStartEditing = (id, title) => {
   window.GlobalState.set({ titleEdited: { title, id } });
 };
 
-const handleOpenForm = (formOpen) => {
+const handleOpenForm = formOpen => {
   window.GlobalState.set({ formOpen: !formOpen });
-}
+};
 
-const togglePriority = (priority) => {
-  window.GlobalState.set({priority: !priority})
-}
+const togglePriority = priority => {
+  window.GlobalState.set({ priority: !priority });
+};
 
 export default withStyles(styles)(function ToDoListContainer(props) {
-  const { title, toDos, checked, titleEdited, menuOpen, formOpen, priority } = useGlobalState();
+  const {
+    title,
+    toDos,
+    checked,
+    titleEdited,
+    menuOpen,
+    formOpen,
+    priority
+  } = useGlobalState();
   const { classes } = props;
   const matches = useMediaQuery("(min-width:600px)");
 
   return (
     <div className={matches ? classes.root : classes.mobile}>
       {matches ? <TopMenu /> : <MenuButton />}
-      <Grid container>
-        {menuOpen || matches ? <LeftMenu /> : <p />}
+      
         <ToDoList
           title={title}
           toDos={toDos}
@@ -106,11 +116,12 @@ export default withStyles(styles)(function ToDoListContainer(props) {
           handleStartEditing={handleStartEditing}
           handleOpenForm={handleOpenForm}
           formOpen={formOpen}
+          menuOpen={menuOpen}
           priority={priority}
           togglePriority={togglePriority}
         />
-      </Grid>
-      {/* <BottomBar /> */}
+      
+      {matches ? <BottomBar /> : <span/>}
     </div>
   );
 });

@@ -2,7 +2,10 @@ import React from "react";
 import TopMenu from "./TopMenu";
 import LeftMenu from "./LeftMenu";
 import BottomBar from "./BottomBar";
-import { Grid, Paper, Typography } from "@material-ui/core";
+import MenuButton from "./MenuButton";
+import { Grid, Paper, Typography, Drawer } from "@material-ui/core";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { useGlobalState } from "../App";
 
 import { withStyles } from "@material-ui/core/styles";
 
@@ -15,11 +18,18 @@ const styles = {
 };
 
 export default withStyles(styles)(function Mock2({ classes }) {
+  const {
+    menuOpen
+  } = useGlobalState();
+  const matches = useMediaQuery("(min-width:600px)");
+
   return (
-    <div>
-      <TopMenu />
-      <Grid container className={classes.root} spacing={2}>
-        <LeftMenu />
+   <div className={matches ? classes.root : classes.mobile}>
+      {matches ? <TopMenu /> : <MenuButton />}
+      <Grid container>
+        {matches ? <LeftMenu /> : <Drawer open={menuOpen || matches}>
+          <LeftMenu />
+        </Drawer>}
         <Grid item xs={12} sm={10}>
           <Paper className={classes.paper}>
             <Typography variant="h4" align="center" gutterBottom>

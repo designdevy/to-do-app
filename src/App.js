@@ -6,7 +6,7 @@ import Mock2 from './components/Mock2'
 import Mock3 from './components/Mock3'
 
 const initialGlobalState = {
-  toDos: [{title: "Make an app", id: "26872648", importance: true}],
+  toDos: [{title: "Make an app", id: "26872648", importance: true}, {title: "Make app design", id: "26872667", importance: false}],
   title: "",
   priority: false,
   checked: [],
