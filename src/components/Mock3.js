@@ -9,29 +9,25 @@ import { useGlobalState } from "../App";
 
 import { withStyles } from "@material-ui/core/styles";
 
-const styles = {
-  paper: { margin: "auto", padding: 20, maxWidth: 550 },
-  root: {
-    flexGrow: 1,
-    padding: 25
-  }
-};
+import { styles } from './MockStyles'
 
 export default withStyles(styles)(function Mock3({ classes }) {
-  const {
-    menuOpen
-  } = useGlobalState();
+  const { menuOpen } = useGlobalState();
   const matches = useMediaQuery("(min-width:600px)");
 
   return (
     <div className={matches ? classes.root : classes.mobile}>
       {matches ? <TopMenu /> : <MenuButton />}
       <Grid container>
-        <Drawer open={menuOpen || matches}>
-          <LeftMenu />
-        </Drawer>
+        {matches ? (
+          <LeftMenu pressed="3" />
+        ) : (
+          <Drawer open={menuOpen || matches}>
+            <LeftMenu pressed="3" />
+          </Drawer>
+        )}
         <Grid item xs={12} sm={10}>
-          <Paper className={classes.paper}>
+          <Paper className={matches ? classes.paper : classes.paperMobile}>
             <Typography variant="h4" align="center" gutterBottom>
               That is also not the page with ToDos!
             </Typography>

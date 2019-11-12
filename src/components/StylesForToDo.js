@@ -1,5 +1,9 @@
 export const styles = {
-  paper: { margin: "auto", padding: 20, maxWidth: 600 },
+  paper: {
+    margin: "20px auto",
+    padding: 20,
+    maxWidth: 600
+  },
   paperMobile: {
     width: "100%",
     minHeight: "90vh",
@@ -9,6 +13,9 @@ export const styles = {
   titleMobile: {
     color: "white",
     fontFamily: "'Abril Fatface', cursive"
+  },
+  headerText: {
+    fontFamily: "'Oswald', sans-serif"
   },
   form: {
     display: "flex",
@@ -43,7 +50,7 @@ export const styles = {
   greenDot: {
     height: 15,
     width: 15,
-    backgroundColor: "#00C49F",
+    backgroundColor: "#8AC926",
     borderRadius: "50%",
     display: "inline-block",
     marginRight: 10
@@ -52,6 +59,14 @@ export const styles = {
     height: 15,
     width: 15,
     backgroundColor: "#FF8042",
+    borderRadius: "50%",
+    display: "inline-block",
+    marginRight: 10
+  },
+  blueDot: {
+    height: 15,
+    width: 15,
+    backgroundColor: "#6675D5",
     borderRadius: "50%",
     display: "inline-block",
     marginRight: 10
@@ -69,5 +84,19 @@ export const styles = {
   },
   chart: {
     margin: "0 auto"
+  },
+  chartBlock: {
+    margin: "30px auto",
+    padding: 20,
+    maxWidth: 600
+  },
+  percentage: {
+    paddingTop: "150px",
+    color: "#6675D5",
+    fontSize: "50px",
+    fontFamily: "'Oswald', sans-serif"
+  },
+  fabButtonWeb: {
+    marginTop: "30px"
   }
 };

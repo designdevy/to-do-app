@@ -12,9 +12,11 @@ import MenuButton from "./MenuButton";
 const styles = {
   root: {
     flexGrow: 1,
-    padding: 25
+    padding: 25,
+    backgroundColor: "#F7F4EA",
+    minHeight: "100vh"
   },
-  mobile: { backgroundColor: "#2196f3", padding: 0, hight: "100vh" }
+  mobile: { backgroundColor: "#6675D5", padding: 0, hight: "100vh" }
 };
 
 function handleChange({ target: { name, value } }) {

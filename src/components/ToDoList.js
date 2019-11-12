@@ -1,6 +1,6 @@
 import React from "react";
-import ListWithItems from './ListWithItems'
-import { styles } from './StylesForToDo'
+import ListWithItems from "./ListWithItems";
+import { styles } from "./StylesForToDo";
 import {
   Paper,
   Typography,
@@ -23,7 +23,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import { withStyles } from "@material-ui/core/styles";
 import LeftMenu from "./LeftMenu";
-import Chart from './Chart'
+import Chart from "./Chart";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 function getCounterText(toDos, checked) {
@@ -60,26 +60,15 @@ export default withStyles(styles)(function ToDoList({
   const matches = useMediaQuery("(min-width:600px)");
   if (matches) {
     return (
-      <Grid container>
-        <LeftMenu />
-        <Grid item sm={6}>
+      <Grid container spacing={2}>
+        <LeftMenu pressed="4"/>
+        <Grid item xs={12} sm={6}>
           <Paper className={classes.paper}>
-            <Typography variant="h4" align="center" gutterBottom>
+            <Typography variant="h4" align="center" className={classes.headerText} gutterBottom>
               Tasks for today
             </Typography>
-            <form onSubmit={handleCreate(toDos)} className={classes.form}>
-              <TextField
-                name="title"
-                label="Task"
-                value={title}
-                onChange={handleChange}
-                margin="normal"
-              />
-              <Button type="submit" color="primary" variant="contained">
-                Add
-              </Button>
-            </form>
-            <ListWithItems 
+
+            <ListWithItems
               toDos={toDos}
               checked={checked}
               titleEdited={titleEdited}
@@ -89,10 +78,66 @@ export default withStyles(styles)(function ToDoList({
               handleEditChange={handleEditChange}
               handleStartEditing={handleStartEditing}
             />
+            
+            {formOpen ? (
+              <Grow in={formOpen}>
+              <form
+                onSubmit={handleCreate(toDos, priority)}
+                className={classes.form}
+              >
+                <TextField
+                  name="title"
+                  label="New task"
+                  value={title}
+                  onChange={handleChange}
+                  margin="normal"
+                  className={classes.textField}
+                />
+
+                <FormControl component="fieldset" className={classes.textField}>
+                  <FormControlLabel
+                    control={
+                      <Switch
+                        checked={priority}
+                        onChange={() => togglePriority(priority)}
+                      />
+                    }
+                    label="High priority"
+                    labelPlacement="end"
+                  />
+                </FormControl>
+                <Grow
+                  in={formOpen}
+                  style={{ transformOrigin: "0 0 0" }}
+                  {...(formOpen ? { timeout: 1000 } : {})}
+                >
+                  <Button
+                    type="submit"
+                    color="primary"
+                    variant="contained"
+                    className={classes.button}
+                  >
+                    Add
+                  </Button>
+                </Grow>
+              </form>
+            </Grow>
+            ) : (
+              <Grow in={!formOpen}>
+              <Fab
+                variant="extended"
+                color="primary"
+                aria-label="add"
+                className={classes.fabButtonWeb}
+                onClick={() => handleOpenForm(formOpen)}
+              >
+                <AddIcon />
+                Add new task
+              </Fab></Grow>
+            )}
           </Paper>
         </Grid>
-        <Grid item sm={4}>
-          <Typography variant="h4" align="left" gutterBottom>You statistics for today</Typography>
+        <Grid item xs={12} sm={4}>
           <Chart toDos={toDos} checked={checked} />
         </Grid>
       </Grid>
@@ -101,7 +146,7 @@ export default withStyles(styles)(function ToDoList({
     return (
       <Grid container>
         <Drawer open={menuOpen}>
-          <LeftMenu />
+          <LeftMenu pressed="4"/>
         </Drawer>
         <Grid item xs={12} sm={10}>
           <Typography
@@ -120,7 +165,7 @@ export default withStyles(styles)(function ToDoList({
             >
               {getCounterText(toDos, checked)}
             </Typography>
-            <ListWithItems 
+            <ListWithItems
               toDos={toDos}
               checked={checked}
               titleEdited={titleEdited}
