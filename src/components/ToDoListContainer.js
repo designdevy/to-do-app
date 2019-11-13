@@ -16,7 +16,7 @@ const styles = {
     backgroundColor: "#F7F4EA",
     minHeight: "100vh"
   },
-  mobile: { backgroundColor: "#6675D5", padding: 0, hight: "100vh" }
+  mobile: { backgroundImage: "linear-gradient(#6675D5, #133FAC, #133FAC, #133FAC)", padding: 0 }
 };
 
 function handleChange({ target: { name, value } }) {
@@ -56,18 +56,27 @@ function handleDelete(id, toDos, checked) {
   window.GlobalState.set({ toDos: newToDos, checked: newChecked });
 }
 
-const handleEdit = (id, toDos, editedTitle) => e => {
+const handleEdit = (id, toDos, editedTitle, checked) => e => {
   e.preventDefault();
   const newToDos = toDos.map(toDo => {
     if (toDo.id === id) {
-      return { title: editedTitle, id };
+      return { title: editedTitle, id, importance: toDo.importance };
     } else {
       return toDo;
     }
   });
+
+  const currentIndex = checked.indexOf(id);
+  const newChecked = [...checked];
+
+  if (currentIndex !== -1) {
+    newChecked.splice(currentIndex, 1);
+  }
+
   window.GlobalState.set({
     toDos: newToDos,
-    titleEdited: { title: "", id: "" }
+    titleEdited: { title: "", id: "" },
+    checked: newChecked
   });
 };
 

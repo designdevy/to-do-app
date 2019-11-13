@@ -31,7 +31,7 @@ export default withStyles(styles)(function ListWithItems({
           <ListItem dense button onClick={handleToggle(id, checked)}>
             {titleEdited.id === id ? (
               <form
-                onSubmit={handleEdit(id, toDos, titleEdited.title)}
+                onSubmit={handleEdit(id, toDos, titleEdited.title, checked)}
                 className={classes.form}
               >
                 <TextField
@@ -54,7 +54,7 @@ export default withStyles(styles)(function ListWithItems({
             )}
             <ListItemSecondaryAction>
               <IconButton
-                color="primary"
+                className={classes.editIcon}
                 edge="end"
                 onClick={() => handleStartEditing(id, title)}
               >
@@ -63,6 +63,7 @@ export default withStyles(styles)(function ListWithItems({
               <IconButton
                 color="primary"
                 edge="end"
+                className={classes.deleteIcon}
                 onClick={() => handleDelete(id, toDos, checked)}
               >
                 <Delete />
