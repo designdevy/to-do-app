@@ -2,26 +2,32 @@ import React from "react";
 import TopMenu from "./TopMenu";
 import LeftMenu from "./LeftMenu";
 import BottomBar from "./BottomBar";
-import { Grid, Paper, Typography } from "@material-ui/core";
+import MenuButton from "./MenuButton";
+import { Grid, Paper, Typography, Drawer } from "@material-ui/core";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { useGlobalState } from "../App";
 
 import { withStyles } from "@material-ui/core/styles";
 
-const styles = {
-  paper: { margin: "auto", padding: 20, maxWidth: 550 },
-  root: {
-    flexGrow: 1,
-    padding: 25
-  }
-};
+import { styles } from './MockStyles'
 
 export default withStyles(styles)(function Mock2({ classes }) {
+  const { menuOpen } = useGlobalState();
+  const matches = useMediaQuery("(min-width:600px)");
+
   return (
-    <div>
-      <TopMenu />
-      <Grid container className={classes.root} spacing={2}>
-        <LeftMenu />
+    <div className={matches ? classes.root : classes.mobile}>
+      {matches ? <TopMenu /> : <MenuButton />}
+      <Grid container>
+        {matches ? (
+          <LeftMenu pressed="2" />
+        ) : (
+          <Drawer open={menuOpen || matches}>
+            <LeftMenu pressed="2" />
+          </Drawer>
+        )}
         <Grid item xs={12} sm={10}>
-          <Paper className={classes.paper}>
+          <Paper className={matches ? classes.paper : classes.paperMobile}>
             <Typography variant="h4" align="center" gutterBottom>
               That's not the page you are looking for!
             </Typography>

@@ -2,32 +2,35 @@ import React from "react";
 import TopMenu from "./TopMenu";
 import LeftMenu from "./LeftMenu";
 import BottomBar from "./BottomBar";
-import { Grid, Paper, Typography } from "@material-ui/core";
+import MenuButton from "./MenuButton";
+import { Grid, Paper, Typography, Drawer } from "@material-ui/core";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { useGlobalState } from "../App";
+import { styles } from "./MockStyles";
 
 import { withStyles } from "@material-ui/core/styles";
 
-const styles = {
-  paper: { margin: "auto", padding: 20, maxWidth: 550 },
-  root: {
-    flexGrow: 1,
-    padding: 25
-  },
-  image: { width: "100%", marginBottom: 15 }
-};
-
 export default withStyles(styles)(function Mock({ classes }) {
+  const { menuOpen } = useGlobalState();
+  const matches = useMediaQuery("(min-width:600px)");
+
   return (
-    <div>
-      <TopMenu />
-      <Grid container className={classes.root} spacing={2}>
-        <LeftMenu />
+    <div className={matches ? classes.root : classes.mobile}>
+      {matches ? <TopMenu /> : <MenuButton />}
+      <header className={classes.header}>
+        <div className={classes.headerBg}></div>
+      </header>
+      
+      <Grid container>
+        {matches ? (
+          <LeftMenu pressed="1" />
+        ) : (
+          <Drawer open={menuOpen || matches}>
+            <LeftMenu pressed="1" />
+          </Drawer>
+        )}
         <Grid item xs={12} sm={10}>
-          <Paper className={classes.paper}>
-            <img
-              className={classes.image}
-              src="https://cdn.pixabay.com/photo/2017/06/05/10/15/landscape-2373649_960_720.jpg"
-              alt="mountains"
-            />
+          <Paper className={matches ? classes.paper : classes.paperMobile}>
             <Typography variant="h4" align="center" gutterBottom>
               Welkom to the application!
             </Typography>
