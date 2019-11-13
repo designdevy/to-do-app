@@ -90,6 +90,11 @@ export const styles = {
     padding: 20,
     maxWidth: 600
   },
+  chartBlockMobile: {
+    margin: "0 auto",
+    padding: 20,
+    maxWidth: 600
+  },
   percentage: {
     paddingTop: "150px",
     color: "#6675D5",
@@ -98,5 +103,11 @@ export const styles = {
   },
   fabButtonWeb: {
     marginTop: "30px"
+  },
+  editIcon: {
+    color: "lightgray"
+  },
+  deleteIcon: {
+    color: "lightgray"
   }
 };

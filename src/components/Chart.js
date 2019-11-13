@@ -4,7 +4,7 @@ import { PieChart, Pie, Cell } from "recharts";
 import { styles } from "./StylesForToDo";
 import { Typography } from "@material-ui/core";
 
-export default withStyles(styles)(function Chart({ classes, toDos, checked }) {
+export default withStyles(styles)(function Chart({ classes, toDos, checked, window }) {
   const importantTasks = toDos.filter(
     toDo => toDo.importance === true && !checked.includes(toDo.id)
   );
@@ -23,7 +23,7 @@ export default withStyles(styles)(function Chart({ classes, toDos, checked }) {
   const percent = Math.round((checked.length * 100) / toDos.length);
 
   return (
-    <div className={classes.chartBlock}>
+    <div className={window === "desktop" ? classes.chartBlock : classes.chartBlockMobile}>
       <Typography variant="h4" align="center" className={classes.headerText} gutterBottom>
         You statistics for today
       </Typography>

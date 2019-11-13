@@ -138,7 +138,7 @@ export default withStyles(styles)(function ToDoList({
           </Paper>
         </Grid>
         <Grid item xs={12} sm={4}>
-          <Chart toDos={toDos} checked={checked} />
+          <Chart toDos={toDos} checked={checked} window="desktop"/>
         </Grid>
       </Grid>
     );
