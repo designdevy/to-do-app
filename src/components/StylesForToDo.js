@@ -2,17 +2,16 @@ export const styles = {
   paper: {
     margin: "20px auto",
     padding: 20,
-    maxWidth: 600
+    maxWidth: 650
+  },
+  todoGrid: {
+    marginTop: "10px"
   },
   paperMobile: {
     width: "100%",
     minHeight: "90vh",
     borderTopLeftRadius: 35,
     backgroundColor: "white"
-  },
-  titleMobile: {
-    color: "white",
-    fontFamily: "'Abril Fatface', cursive"
   },
   headerText: {
     fontFamily: "'Oswald', sans-serif"
@@ -21,7 +20,8 @@ export const styles = {
     display: "flex",
     flexDirection: "column",
     alignItems: "baseline",
-    justifyContent: "space-evenly"
+    justifyContent: "space-evenly",
+    marginBottom: "80px"
   },
   image: { width: "100%" },
   grow: {
@@ -109,5 +109,22 @@ export const styles = {
   },
   deleteIcon: {
     color: "lightgray"
+  },
+  headerMobile: {
+    position: "relative",
+    height: "15vh",
+    overflow: "hidden"
+  },
+  headerBg: {
+    position: "absolute",
+    top: 0,
+    bottom: 0,
+    right: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    backgroundImage: "linear-gradient(#6675D5, #133FAC)",
+    transform: "skewY(-6deg)",
+    transformOrigin: "top left"
   }
 };

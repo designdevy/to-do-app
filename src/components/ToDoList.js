@@ -18,6 +18,7 @@ import {
   Drawer
 } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
+import MenuButton from "./MenuButton";
 import CloseIcon from "@material-ui/icons/Close";
 import SearchIcon from "@material-ui/icons/Search";
 import MoreIcon from "@material-ui/icons/MoreVert";
@@ -60,11 +61,16 @@ export default withStyles(styles)(function ToDoList({
   const matches = useMediaQuery("(min-width:600px)");
   if (matches) {
     return (
-      <Grid container spacing={2}>
-        <LeftMenu pressed="4"/>
+      <Grid container spacing={2} className={classes.todoGrid}>
+        <LeftMenu pressed="4" />
         <Grid item xs={12} sm={6}>
           <Paper className={classes.paper}>
-            <Typography variant="h4" align="center" className={classes.headerText} gutterBottom>
+            <Typography
+              variant="h4"
+              align="center"
+              className={classes.headerText}
+              gutterBottom
+            >
               Tasks for today
             </Typography>
 
@@ -78,67 +84,71 @@ export default withStyles(styles)(function ToDoList({
               handleEditChange={handleEditChange}
               handleStartEditing={handleStartEditing}
             />
-            
+
             {formOpen ? (
               <Grow in={formOpen}>
-              <form
-                onSubmit={handleCreate(toDos, priority)}
-                className={classes.form}
-              >
-                <TextField
-                  name="title"
-                  label="New task"
-                  value={title}
-                  onChange={handleChange}
-                  margin="normal"
-                  className={classes.textField}
-                />
-
-                <FormControl component="fieldset" className={classes.textField}>
-                  <FormControlLabel
-                    control={
-                      <Switch
-                        checked={priority}
-                        onChange={() => togglePriority(priority)}
-                      />
-                    }
-                    label="High priority"
-                    labelPlacement="end"
-                  />
-                </FormControl>
-                <Grow
-                  in={formOpen}
-                  style={{ transformOrigin: "0 0 0" }}
-                  {...(formOpen ? { timeout: 1000 } : {})}
+                <form
+                  onSubmit={handleCreate(toDos, priority)}
+                  className={classes.form}
                 >
-                  <Button
-                    type="submit"
-                    color="primary"
-                    variant="contained"
-                    className={classes.button}
+                  <TextField
+                    name="title"
+                    label="New task"
+                    value={title}
+                    onChange={handleChange}
+                    margin="normal"
+                    className={classes.textField}
+                  />
+
+                  <FormControl
+                    component="fieldset"
+                    className={classes.textField}
                   >
-                    Add
-                  </Button>
-                </Grow>
-              </form>
-            </Grow>
+                    <FormControlLabel
+                      control={
+                        <Switch
+                          checked={priority}
+                          onChange={() => togglePriority(priority)}
+                        />
+                      }
+                      label="High priority"
+                      labelPlacement="end"
+                    />
+                  </FormControl>
+                  <Grow
+                    in={formOpen}
+                    style={{ transformOrigin: "0 0 0" }}
+                    {...(formOpen ? { timeout: 1000 } : {})}
+                  >
+                    <Button
+                      type="submit"
+                      color="primary"
+                      variant="contained"
+                      className={classes.button}
+                    >
+                      Add
+                    </Button>
+                  </Grow>
+                </form>
+              </Grow>
             ) : (
               <Grow in={!formOpen}>
-              <Fab
-                variant="extended"
-                color="primary"
-                aria-label="add"
-                className={classes.fabButtonWeb}
-                onClick={() => handleOpenForm(formOpen)}
-              >
-                <AddIcon />
-                Add new task
-              </Fab></Grow>
+                <Fab
+                  variant="extended"
+                  color="primary"
+                  aria-label="add"
+                  className={classes.fabButtonWeb}
+                  onClick={() => handleOpenForm(formOpen)}
+                >
+                  <AddIcon />
+                  Add new task
+                </Fab>
+              </Grow>
             )}
           </Paper>
         </Grid>
         <Grid item xs={12} sm={4}>
-          <Chart toDos={toDos} checked={checked} window="desktop"/>
+          <Chart toDos={toDos} checked={checked} window="desktop" />
         </Grid>
       </Grid>
     );
@@ -146,17 +156,13 @@ export default withStyles(styles)(function ToDoList({
     return (
       <Grid container>
         <Drawer open={menuOpen}>
-          <LeftMenu pressed="4"/>
+          <LeftMenu pressed="4" />
         </Drawer>
         <Grid item xs={12} sm={10}>
-          <Typography
-            variant="h5"
-            align="center"
-            className={classes.titleMobile}
-            gutterBottom
-          >
-            Hello, User!
-          </Typography>
+          <header className={classes.headerMobile}>
+            <div className={classes.headerBg}></div>
+            <MenuButton className={classes.menuMobileFirst} />
+          </header>
           <Paper className={classes.paperMobile}>
             <Typography
               variant="h6"

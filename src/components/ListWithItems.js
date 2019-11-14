@@ -13,6 +13,14 @@ import Delete from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import { withStyles } from "@material-ui/core/styles";
 
+function titleShort(title) {
+  if (title.length > 26) {
+    return (title.slice(0, 27) + '...')
+  } else {
+    return title
+  }
+}
+
 export default withStyles(styles)(function ListWithItems({
   classes,
   toDos,
@@ -24,6 +32,7 @@ export default withStyles(styles)(function ListWithItems({
   handleEditChange,
   handleStartEditing
 }) {
+
   return (
     <List>
       {toDos.map(({ id, title, importance }) => (
@@ -49,7 +58,7 @@ export default withStyles(styles)(function ListWithItems({
                 <span
                   className={importance ? classes.redDot : classes.greenDot}
                 ></span>
-                {title.length > 26 ? (title.slice(0, 27) + '...') : title}
+                {titleShort(title)}
               </Typography>
             )}
             <ListItemSecondaryAction>

@@ -7,7 +7,6 @@ import ToDoList from "./ToDoList";
 import { withStyles } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import BottomBar from "./BottomBar";
-import MenuButton from "./MenuButton";
 
 const styles = {
   root: {
@@ -16,7 +15,7 @@ const styles = {
     backgroundColor: "white",
     minHeight: "100vh"
   },
-  mobile: { backgroundImage: "linear-gradient(#6675D5, #133FAC, #133FAC, #133FAC)", padding: 0 }
+  mobile: { backgroundImage: "white", padding: 0 }
 };
 
 function handleChange({ target: { name, value } }) {
@@ -111,7 +110,7 @@ export default withStyles(styles)(function ToDoListContainer(props) {
 
   return (
     <div className={matches ? classes.root : classes.mobile}>
-      {matches ? <TopMenu /> : <MenuButton />}
+      {matches ? <TopMenu /> : <span />}
       
         <ToDoList
           title={title}

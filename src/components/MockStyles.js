@@ -7,9 +7,8 @@ export const styles = {
   },
   topBarMain: {
     backgroundColor: "white",
-    width: "100%",
-    display: "flex",
-    justifyContent: "right"
+    marginLeft: "auto",
+    marginRight: 0
   },
   header: {
     position: "relative",
@@ -18,7 +17,7 @@ export const styles = {
   },
   headerMobile: {
     position: "relative",
-    height: "20vh",
+    height: "15vh",
     overflow: "hidden"
   },
   headerBg: {
@@ -57,18 +56,26 @@ export const styles = {
     fontFamily: "'Bebas Neue', cursive",
     fontStretch: "expanded",
     position: "relative",
-    marginTop: "10%",
+    marginTop: "20vh",
     marginBottom: "3%",
-    zIndex: 1,
+    zIndex: 1
+  },
+  mainTitleMobile: {
+    fontFamily: "'Bebas Neue', cursive",
+    fontStretch: "expanded",
+    position: "relative",
+    marginTop: "35vh",
+    marginBottom: "3%",
+    zIndex: 1
   },
   gradientButton: {
     backgroundImage: "linear-gradient(#6675D5, #133FAC)",
     color: "white",
     position: "fixed",
     zIndex: 1,
-    bottom: 10,
-    left: "65%",
-    right: 10,
+    bottom: 20,
+    left: "67%",
+    right: 8,
     margin: "0 auto"
   },
   gradientButtonDesktop: {
@@ -77,7 +84,16 @@ export const styles = {
     position: "relative",
     marginTop: 0,
     marginBottom: "3%",
-    marginLeft: "46.5%",
+    marginLeft: "45%",
+    marginRight: "35%",
+    zIndex: 1
+  },
+  gradientButtonMobile: {
+    backgroundImage: "linear-gradient(#6675D5, #133FAC)",
+    color: "white",
+    position: "relative",
+    marginTop: "3%",
+    marginLeft: "60vw",
     zIndex: 1
   },
   link: {
@@ -92,7 +108,31 @@ export const styles = {
     right: 10,
     margin: "0 auto"
   },
+  testImageTop: {
+    position: "fixed",
+    zIndex: 0,
+    top: -250,
+    left: -150,
+    margin: "0 auto"
+  },
   button: {
-    marginLeft: "10px"
+    marginLeft: "10px",
+    float: "right",
+    zIndex: 1
+  },
+  testImageTopMobile: {
+    position: "fixed",
+    zIndex: 0,
+    top: -260,
+    left: -260,
+    margin: "0 auto"
+  },
+  testImageMobile: {
+    position: "fixed",
+    zIndex: 0,
+    bottom: -300,
+    left: 0,
+    right: -300,
+    margin: "0 auto"
   }
 };
