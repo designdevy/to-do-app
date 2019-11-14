@@ -1,28 +1,22 @@
 import React from "react";
-import { useGlobalState } from "../App";
-import MenuIcon from "@material-ui/icons/Menu";
-import { Typography, IconButton, AppBar, Toolbar } from "@material-ui/core";
+import { Typography, AppBar, Toolbar } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
 
-function handleOpeningMenu(menuOpen) {
-  window.GlobalState.set({ menuOpen: !menuOpen });
+const styles = {
+  topBar: {
+    backgroundImage: "linear-gradient(#6675D5, #133FAC)"
+  },
+  text: {
+    // fontFamily: "'Bebas Neue', cursive",
+  }
 }
 
-export default function TopMenu() {
-  const { menuOpen } = useGlobalState();
-
-  return (
-    <AppBar position="static">
+export default withStyles(styles)(function TopMenu({ classes }) {
+    return (
+    <AppBar position="static" className={classes.topBar}>
       <Toolbar>
-        <IconButton
-          edge="start"
-          color="inherit"
-          aria-label="menu"
-          onClick={() => handleOpeningMenu(menuOpen)}
-        >
-          <MenuIcon />
-        </IconButton>
-        <Typography variant="h6">Application for DUODEKA</Typography>
+        <Typography variant="h6" className={classes.text}>Application for DUODEKA</Typography>
       </Toolbar>
     </AppBar>
   );
-}
+})

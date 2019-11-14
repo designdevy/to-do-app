@@ -1,45 +1,48 @@
 import React from "react";
-import TopMenu from "./TopMenu";
 import LeftMenu from "./LeftMenu";
-import BottomBar from "./BottomBar";
-import { Grid, Paper, Typography } from "@material-ui/core";
+import MenuButton from "./MenuButton";
+import { Drawer, Grow, Button } from "@material-ui/core";
+import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { useGlobalState } from "../App";
+import Chart from "./Chart";
+import { Link } from "react-router-dom";
 
 import { withStyles } from "@material-ui/core/styles";
 
-const styles = {
-  paper: { margin: "auto", padding: 20, maxWidth: 550 },
-  root: {
-    flexGrow: 1,
-    padding: 25
-  }
-};
+import { styles } from "./MockStyles";
 
 export default withStyles(styles)(function Mock2({ classes }) {
+  const { menuOpen, toDos, checked } = useGlobalState();
+  const matches = useMediaQuery("(min-width:600px)");
+
   return (
-    <div>
-      <TopMenu />
-      <Grid container className={classes.root} spacing={2}>
-        <LeftMenu />
-        <Grid item xs={12} sm={10}>
-          <Paper className={classes.paper}>
-            <Typography variant="h4" align="center" gutterBottom>
-              That's not the page you are looking for!
-            </Typography>
-            <Typography variant="subtitle1" gutterBottom>
-              Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-              dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
-              ac consectetur ac, vestibulum at eros. Praesent commodo cursus
-              magna, vel scelerisque nisl consectetur et. Cras mattis
-              consectetur purus sit amet fermentum. Cras justo odio, dapibus ac
-              facilisis in, egestas eget quam. Morbi leo risus, porta ac
-              consectetur ac, vestibulum at eros. Praesent commodo cursus magna,
-              vel scelerisque nisl consectetur et. Cras mattis consectetur purus
-              sit amet fermentum.
-            </Typography>
-          </Paper>
-        </Grid>
-      </Grid>
-      <BottomBar />
+    <div className={classes.mobileFirst}>
+      <Drawer open={menuOpen || matches}>
+        <LeftMenu pressed="2" />
+      </Drawer>
+      <header className={classes.headerMobile}>
+        <div className={classes.headerBg}></div>
+        <MenuButton className={classes.menuMobileFirst} />
+      </header>
+      <Chart toDos={toDos} checked={checked} window="mobile" />
+      <Grow
+        in={!matches}
+        style={{ transformOrigin: "0 0 0" }}
+        {...(!matches ? { timeout: 3000 } : {})}
+      >
+        <Link to="/todo" className={classes.link}>
+          <Button
+            variant="contained"
+            position="right"
+            size="medium"
+            className={classes.gradientButton}
+          >
+            Tasks
+            <ArrowForwardIcon />
+          </Button>
+        </Link>
+      </Grow>
     </div>
   );
 });

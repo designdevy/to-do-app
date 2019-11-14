@@ -5,11 +5,11 @@ import "./index.css";
 import App from "./App";
 
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
-import blue from "@material-ui/core/colors/blue";
 
 const theme = createMuiTheme({
   palette: {
-    primary: blue
+    primary: {main: "#6675D5"},
+    secondary: {main: '#FF595E'}
   }
 });
 
