@@ -56,14 +56,6 @@ export default withStyles(styles)(function LeftMenu(props) {
           Main page
         </Button>
       </Link>
-      <Button
-        color="primary"
-        variant={pressed === "2" ? "outlined" : "contained"}
-        className={classes.button}
-        onClick={() => handleClosingMenu()}
-      >
-        Empty page
-      </Button>
       <Link to="/todo" className={classes.link}>
         <Button
           color="primary"
@@ -74,6 +66,27 @@ export default withStyles(styles)(function LeftMenu(props) {
           TO DO App
         </Button>
       </Link>
+      {matches ? (
+        <Button
+          color="primary"
+          variant={pressed === "2" ? "outlined" : "contained"}
+          className={classes.button}
+          onClick={() => handleClosingMenu()}
+        >
+          Empty page
+        </Button>
+      ) : (
+        <Link to="/statistics" className={classes.link}>
+          <Button
+            color="primary"
+            variant={pressed === "2" ? "outlined" : "contained"}
+            className={classes.button}
+            onClick={() => handleClosingMenu()}
+          >
+            Statistics
+          </Button>
+        </Link>
+      )}
       <Button
         color="primary"
         variant={pressed === "3" ? "outlined" : "contained"}

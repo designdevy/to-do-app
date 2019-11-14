@@ -1,17 +1,8 @@
 import React from "react";
 import LeftMenu from "./LeftMenu";
-import MenuButton from "./MenuButton";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
-import Chart from "./Chart";
 import { Link } from "react-router-dom";
-import {
-  Typography,
-  Drawer,
-  Zoom,
-  Grow,
-  Button,
-  Fade
-} from "@material-ui/core";
+import { Typography, Drawer, Zoom, Button, Fade } from "@material-ui/core";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useGlobalState } from "../App";
 import { styles } from "./MockStyles";
@@ -19,7 +10,7 @@ import { styles } from "./MockStyles";
 import { withStyles } from "@material-ui/core/styles";
 
 export default withStyles(styles)(function Mock({ classes }) {
-  const { menuOpen, toDos, checked } = useGlobalState();
+  const { menuOpen } = useGlobalState();
   const matches = useMediaQuery("(min-width:600px)");
 
   if (matches) {
@@ -89,28 +80,41 @@ export default withStyles(styles)(function Mock({ classes }) {
         <Drawer open={menuOpen || matches}>
           <LeftMenu pressed="1" />
         </Drawer>
-        <header className={classes.headerMobile}>
-          <div className={classes.headerBg}></div>
-          <MenuButton className={classes.menuMobileFirst} />
-        </header>
-        <Chart toDos={toDos} checked={checked} window="mobile" />
-        <Grow
+        <img
+          src="https://i.etsystatic.com/isla/ce1028/31086850/isla_500x500.31086850_edi78g3d.jpg?version=0"
+          alt="violet"
+          className={classes.testImageTopMobile}
+        />
+        <Zoom
           in={!matches}
           style={{ transformOrigin: "0 0 0" }}
-          {...(!matches ? { timeout: 5000 } : {})}
+          {...(!matches ? { timeout: 1000 } : {})}
         >
-          <Link to="/todo" className={classes.link}>
+          <Typography
+            variant="h3"
+            align="center"
+            className={classes.mainTitleMobile}
+          >
+            Do your tasks <br /> together <br /> with To Do App
+          </Typography>
+        </Zoom>
+        <Link to="/statistics" className={classes.link}>
+          <Fade in={!matches} {...(!matches ? { timeout: 3000 } : {})}>
             <Button
               variant="contained"
-              position="right"
-              size="medium"
-              className={classes.gradientButton}
+              size="large"
+              className={classes.gradientButtonMobile}
             >
-              Tasks
+              Start
               <ArrowForwardIcon />
             </Button>
-          </Link>
-        </Grow>
+          </Fade>
+        </Link>
+        <img
+          src="https://i.etsystatic.com/isla/ce1028/31086850/isla_500x500.31086850_edi78g3d.jpg?version=0"
+          alt="violet"
+          className={classes.testImageMobile}
+        />
       </div>
     );
   }
