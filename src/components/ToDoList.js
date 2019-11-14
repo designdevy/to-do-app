@@ -60,9 +60,9 @@ export default withStyles(styles)(function ToDoList({
   const matches = useMediaQuery("(min-width:600px)");
   if (matches) {
     return (
-      <Grid container spacing={2}>
+      <Grid container spacing={2} className={classes.todoGrid}>
         <LeftMenu pressed="4"/>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={6} >
           <Paper className={classes.paper}>
             <Typography variant="h4" align="center" className={classes.headerText} gutterBottom>
               Tasks for today

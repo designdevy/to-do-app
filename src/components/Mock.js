@@ -4,7 +4,14 @@ import MenuButton from "./MenuButton";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import Chart from "./Chart";
 import { Link } from "react-router-dom";
-import { Typography, Drawer, Zoom, Grow, Button } from "@material-ui/core";
+import {
+  Typography,
+  Drawer,
+  Zoom,
+  Grow,
+  Button,
+  Fade
+} from "@material-ui/core";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useGlobalState } from "../App";
 import { styles } from "./MockStyles";
@@ -18,25 +25,18 @@ export default withStyles(styles)(function Mock({ classes }) {
   if (matches) {
     return (
       <div className={classes.root}>
+        <img
+          src="https://i.etsystatic.com/isla/ce1028/31086850/isla_500x500.31086850_edi78g3d.jpg?version=0"
+          alt="violet"
+          className={classes.testImageTop}
+        />
         <div className={classes.topBarMain}>
-          <Link to="/" className={classes.link}>
-            <Button
-              color="primary"
-              variant="outlined"
-              className={classes.button}
-            >
-              Main page
-            </Button>
-          </Link>
-          <Link to="/mock2" className={classes.link}>
-            <Button
-              color="primary"
-              variant="outlined"
-              className={classes.button}
-            >
-              Empty Page
-            </Button>
-          </Link>
+          <Button color="primary" variant="outlined" className={classes.button}>
+            Empty Page
+          </Button>
+          <Button color="primary" variant="outlined" className={classes.button}>
+            Empty Page
+          </Button>
           <Link to="/todo" className={classes.link}>
             <Button
               color="primary"
@@ -46,13 +46,13 @@ export default withStyles(styles)(function Mock({ classes }) {
               TO DO app
             </Button>
           </Link>
-          <Link to="/mock3" className={classes.link}>
+          <Link to="/" className={classes.link}>
             <Button
               color="primary"
               variant="outlined"
               className={classes.button}
             >
-              Empty Page
+              Main page
             </Button>
           </Link>
         </div>
@@ -62,18 +62,19 @@ export default withStyles(styles)(function Mock({ classes }) {
           {...(matches ? { timeout: 1000 } : {})}
         >
           <Typography variant="h1" align="center" className={classes.mainTitle}>
-            Do your tasks together <br /> with ToDo App
+            Do your tasks together <br /> with To Do App
           </Typography>
         </Zoom>
         <Link to="/todo" className={classes.link}>
-          <Button
-            variant="contained"
-            position="center"
-            size="medium"
-            className={classes.gradientButtonDesktop}
-          >
-            Get Started
-          </Button>
+          <Fade in={matches} {...(matches ? { timeout: 3000 } : {})}>
+            <Button
+              variant="contained"
+              size="large"
+              className={classes.gradientButtonDesktop}
+            >
+              Get Started
+            </Button>
+          </Fade>
         </Link>
         <img
           src="https://i.etsystatic.com/isla/ce1028/31086850/isla_500x500.31086850_edi78g3d.jpg?version=0"

@@ -2,7 +2,10 @@ export const styles = {
   paper: {
     margin: "20px auto",
     padding: 20,
-    maxWidth: 600
+    maxWidth: 650
+  },
+  todoGrid: {
+    marginTop: "10px"
   },
   paperMobile: {
     width: "100%",

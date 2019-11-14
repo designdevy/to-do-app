@@ -7,9 +7,8 @@ export const styles = {
   },
   topBarMain: {
     backgroundColor: "white",
-    width: "100%",
-    display: "flex",
-    justifyContent: "right"
+    marginLeft: "auto",
+    marginRight: 0
   },
   header: {
     position: "relative",
@@ -77,7 +76,8 @@ export const styles = {
     position: "relative",
     marginTop: 0,
     marginBottom: "3%",
-    marginLeft: "46.5%",
+    marginLeft: "45%",
+    marginRight: "35%",
     zIndex: 1
   },
   link: {
@@ -92,7 +92,15 @@ export const styles = {
     right: 10,
     margin: "0 auto"
   },
+  testImageTop: {
+    position: "fixed",
+    zIndex: 0,
+    top: -250,
+    left: -150,
+    margin: "0 auto"
+  },
   button: {
-    marginLeft: "10px"
+    marginLeft: "10px",
+    float: "right"
   }
 };

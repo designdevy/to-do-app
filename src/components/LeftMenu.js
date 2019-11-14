@@ -53,19 +53,17 @@ export default withStyles(styles)(function LeftMenu(props) {
           className={classes.button}
           onClick={() => handleClosingMenu()}
         >
-          Page 1
+          Main page
         </Button>
       </Link>
-      <Link to="/mock2" className={classes.link}>
-        <Button
-          color="primary"
-          variant={pressed === "2" ? "outlined" : "contained"}
-          className={classes.button}
-          onClick={() => handleClosingMenu()}
-        >
-          Page 2
-        </Button>
-      </Link>
+      <Button
+        color="primary"
+        variant={pressed === "2" ? "outlined" : "contained"}
+        className={classes.button}
+        onClick={() => handleClosingMenu()}
+      >
+        Empty page
+      </Button>
       <Link to="/todo" className={classes.link}>
         <Button
           color="primary"
@@ -73,19 +71,17 @@ export default withStyles(styles)(function LeftMenu(props) {
           className={classes.button}
           onClick={() => handleClosingMenu()}
         >
-          TODO
+          TO DO App
         </Button>
       </Link>
-      <Link to="/mock3" className={classes.link}>
-        <Button
-          color="primary"
-          variant={pressed === "3" ? "outlined" : "contained"}
-          className={classes.button}
-          onClick={() => handleClosingMenu()}
-        >
-          Page 3
-        </Button>
-      </Link>
+      <Button
+        color="primary"
+        variant={pressed === "3" ? "outlined" : "contained"}
+        className={classes.button}
+        onClick={() => handleClosingMenu()}
+      >
+        Empty page
+      </Button>
     </Grid>
   );
 });
