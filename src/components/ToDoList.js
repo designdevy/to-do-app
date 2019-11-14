@@ -4,17 +4,12 @@ import { styles } from "./StylesForToDo";
 import {
   Paper,
   Typography,
-  TextField,
-  Button,
   IconButton,
   Grid,
   AppBar,
   Toolbar,
   Fab,
   Grow,
-  Switch,
-  FormControlLabel,
-  FormControl,
   Drawer
 } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
@@ -26,6 +21,7 @@ import { withStyles } from "@material-ui/core/styles";
 import LeftMenu from "./LeftMenu";
 import Chart from "./Chart";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import AddForm from "./AddForm";
 
 function getCounterText(toDos, checked) {
   const counter = toDos.length - checked.length;
@@ -85,53 +81,15 @@ export default withStyles(styles)(function ToDoList({
               handleStartEditing={handleStartEditing}
             />
 
-            {formOpen ? (
-              <Grow in={formOpen}>
-                <form
-                  onSubmit={handleCreate(toDos, priority)}
-                  className={classes.form}
-                >
-                  <TextField
-                    name="title"
-                    label="New task"
-                    value={title}
-                    onChange={handleChange}
-                    margin="normal"
-                    className={classes.textField}
-                  />
-
-                  <FormControl
-                    component="fieldset"
-                    className={classes.textField}
-                  >
-                    <FormControlLabel
-                      control={
-                        <Switch
-                          checked={priority}
-                          onChange={() => togglePriority(priority)}
-                        />
-                      }
-                      label="High priority"
-                      labelPlacement="end"
-                    />
-                  </FormControl>
-                  <Grow
-                    in={formOpen}
-                    style={{ transformOrigin: "0 0 0" }}
-                    {...(formOpen ? { timeout: 1000 } : {})}
-                  >
-                    <Button
-                      type="submit"
-                      color="primary"
-                      variant="contained"
-                      className={classes.button}
-                    >
-                      Add
-                    </Button>
-                  </Grow>
-                </form>
-              </Grow>
-            ) : (
+            {formOpen ? (<AddForm
+              toDos={toDos}
+              handleCreate={handleCreate}
+              handleChange={handleChange}
+              togglePriority={togglePriority}
+              formOpen={formOpen}
+              title={title}
+              priority={priority}
+            />) : (
               <Grow in={!formOpen}>
                 <Fab
                   variant="extended"
@@ -181,48 +139,15 @@ export default withStyles(styles)(function ToDoList({
               handleEditChange={handleEditChange}
               handleStartEditing={handleStartEditing}
             />
-            <Grow in={formOpen}>
-              <form
-                onSubmit={handleCreate(toDos, priority)}
-                className={classes.form}
-              >
-                <TextField
-                  name="title"
-                  label="New task"
-                  value={title}
-                  onChange={handleChange}
-                  margin="normal"
-                  className={classes.textField}
-                />
-
-                <FormControl component="fieldset" className={classes.textField}>
-                  <FormControlLabel
-                    control={
-                      <Switch
-                        checked={priority}
-                        onChange={() => togglePriority(priority)}
-                      />
-                    }
-                    label="High priority"
-                    labelPlacement="end"
-                  />
-                </FormControl>
-                <Grow
-                  in={formOpen}
-                  style={{ transformOrigin: "0 0 0" }}
-                  {...(formOpen ? { timeout: 1000 } : {})}
-                >
-                  <Button
-                    type="submit"
-                    color="primary"
-                    variant="contained"
-                    className={classes.button}
-                  >
-                    Add
-                  </Button>
-                </Grow>
-              </form>
-            </Grow>
+            <AddForm
+              toDos={toDos}
+              handleCreate={handleCreate}
+              handleChange={handleChange}
+              togglePriority={togglePriority}
+              formOpen={formOpen}
+              title={title}
+              priority={priority}
+            />
             <AppBar position="fixed" color="primary" className={classes.appBar}>
               <Toolbar>
                 <Fab
