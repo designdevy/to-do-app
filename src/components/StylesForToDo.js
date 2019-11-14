@@ -73,7 +73,7 @@ export const styles = {
   },
   button: {
     width: "80%",
-    margin: "10px auto"
+    margin: "25px auto"
   },
   textField: {
     marginLeft: "10%"
@@ -83,7 +83,7 @@ export const styles = {
     color: "gray"
   },
   chart: {
-    margin: "0 auto"
+    margin: "10px auto"
   },
   chartBlock: {
     margin: "30px auto",

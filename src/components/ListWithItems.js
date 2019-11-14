@@ -49,7 +49,7 @@ export default withStyles(styles)(function ListWithItems({
                 <span
                   className={importance ? classes.redDot : classes.greenDot}
                 ></span>
-                {title}
+                {title.length > 26 ? (title.slice(0, 27) + '...') : title}
               </Typography>
             )}
             <ListItemSecondaryAction>

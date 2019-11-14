@@ -13,7 +13,7 @@ const styles = {
   root: {
     flexGrow: 1,
     padding: 25,
-    backgroundColor: "#F7F4EA",
+    backgroundColor: "white",
     minHeight: "100vh"
   },
   mobile: { backgroundImage: "linear-gradient(#6675D5, #133FAC, #133FAC, #133FAC)", padding: 0 }

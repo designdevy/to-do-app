@@ -2,8 +2,14 @@ export const styles = {
   root: {
     flexGrow: 1,
     padding: 25,
-    backgroundColor: "#F7F4EA",
+    backgroundColor: "white",
     minHeight: "100vh"
+  },
+  topBarMain: {
+    backgroundColor: "white",
+    width: "100%",
+    display: "flex",
+    justifyContent: "right"
   },
   header: {
     position: "relative",
@@ -41,12 +47,19 @@ export const styles = {
   },
   image: { width: "100%", marginBottom: 15, opacity: "0.7" },
   mobile: { backgroundColor: "#6675D5", padding: 0, hight: "100vh" },
-  mobileFirst: { backgroundColor: "white", padding: 0, hight: "100vh", justifyContent: 'center' },
-  headerText: {
+  mobileFirst: {
+    backgroundColor: "white",
+    padding: 0,
+    hight: "100vh",
+    justifyContent: "center"
+  },
+  mainTitle: {
+    fontFamily: "'Bebas Neue', cursive",
+    fontStretch: "expanded",
     position: "relative",
-    color: "white",
-    fontFamily: "'Oswald', sans-serif",
-    margin: "5%"
+    marginTop: "10%",
+    marginBottom: "3%",
+    zIndex: 1,
   },
   gradientButton: {
     backgroundImage: "linear-gradient(#6675D5, #133FAC)",
@@ -58,8 +71,28 @@ export const styles = {
     right: 10,
     margin: "0 auto"
   },
+  gradientButtonDesktop: {
+    backgroundImage: "linear-gradient(#6675D5, #133FAC)",
+    color: "white",
+    position: "relative",
+    marginTop: 0,
+    marginBottom: "3%",
+    marginLeft: "46.5%",
+    zIndex: 1
+  },
   link: {
     textDecoration: "none",
     color: "white"
   },
+  testImage: {
+    position: "fixed",
+    zIndex: 0,
+    bottom: 10,
+    left: "75%",
+    right: 10,
+    margin: "0 auto"
+  },
+  button: {
+    marginLeft: "10px"
+  }
 };
